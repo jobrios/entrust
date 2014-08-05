@@ -1,10 +1,9 @@
 <?php
 use Illuminate\Support\Facades\Config;
 
+$user_table = Config::get('auth.table');
 $user_model = Config::get('auth.model');
-$user = new $user_model();
-$user_table = $user->getTable();
-$user_id = $user->getKeyName();
+$user_id = (new $user_model())->getKeyName();
 
 echo "<?php\n";
 

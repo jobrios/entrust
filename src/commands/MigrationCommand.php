@@ -29,18 +29,23 @@ class MigrationCommand extends Command
     public function fire()
     {
         $this->laravel->view->addNamespace('entrust',substr(__DIR__,0,-8).'views');
-
+        
+        $roles_table = Config::get('entrust::roles_table');
+        $user_roles_table = Config::get('entrust::user_roles_table');
+        $permissions_table = Config::get('entrust::permissions_table');
+        $permission_role_table = Config::get('entrust::permission_role_table');
+/*
         $roles_table = lcfirst($this->option('roles_table'));
         $user_roles_table = lcfirst($this->option('user_roles_table'));
         $permissions_table = lcfirst($this->option('permissions_table'));
         $permission_role_table = lcfirst($this->option('permission_role_table'));
-
+*/
         $this->line('');
         $this->info(
         	"Tables: "
         	. "$roles_table, $user_roles_table, $permissions_table, $permission_role_table"
         );
-        $message = "A migration that creates '$roles_table', '$assigned_roles_table', "
+        $message = "A migration that creates '$roles_table', '$user_roles_table', "
             . "'$permissions_table', '$permission_role_table'"
             . " tables will be created in the app/database/migrations directory.";
 
@@ -79,7 +84,7 @@ class MigrationCommand extends Command
      *
      * @return array
      */
-    protected function getOptions()
+/*    protected function getOptions()
     {
         return array(
             array(
@@ -87,7 +92,7 @@ class MigrationCommand extends Command
             	null,
             	InputOption::VALUE_OPTIONAL,
             	'Roles table.',
-            	Config::get('entrust::roles')
+            	Config::get('entrust::roles_table')
             ),
             array(
             	'user_roles_table',
@@ -112,7 +117,7 @@ class MigrationCommand extends Command
             ),
         );
     }
-
+*/
     /**
      * Create the migration.
      *
